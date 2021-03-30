@@ -1,0 +1,25 @@
+#!/bin/sh
+
+WALL="$XDG_DATA_HOME/wall"
+lock_icon="/media/hdd/mubashir/.local/lock.png"
+LOCK="$XDG_DATA_HOME/lock"
+
+if [ -z "$1" ]; then
+	swaymsg "output * bg "$WALL" fill"
+else
+	IMAGE="$1"
+	if file "$IMAGE" |grep -qE 'image';then
+		cp "$IMAGE" "$WALL"
+		convert "$WALL" -font Liberation-Sans \
+			-scale 1366x768 \
+			-level "0%,100%,0.6" \
+			-filter Gaussian -resize 20% -define "filter:sigma=1.5" -resize 500.5% \
+			-pointsize 26 -fill white -gravity center \
+			-annotate +0+160 "Type Password to Unlock" \
+			"$lock_icon" -gravity center -composite "$LOCK"
+		swaymsg "output * bg "$WALL" fill"
+	else
+		echo "$IMAGE is not valid image file" >/dev/stderr
+		exit 1
+	fi
+fi
