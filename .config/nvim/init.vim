@@ -3,7 +3,7 @@ let mapleader=","
 
 " vim plugins
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'lilydjwg/colorizer'		" hex color highlighting
+Plug 'lilydjwg/colorizer'		" hex color highlighting
 " Plug 'kovetskiy/sxhkd-vim' 		" sxhkdrc syntax highlighting
 Plug 'tpope/vim-commentary'		" make commenting easier
 " Plug 'dracula/vim', { 'as': 'dracula' } " dracula color scheme
@@ -12,6 +12,8 @@ Plug 'morhetz/gruvbox' 			" gruvbox colorscheme
 " Plug 'honza/vim-snippets' 		" provides actual snippets for 'ultisnips'
 " Plug 'vifm/vifm.vim' 			" vifm integration in vim, also provides vifmrc syntax highlighting
 " Plug 'klen/python-mode' 		" make vim a python ide
+Plug 'neoclide/coc.nvim', {'for':['python'], 'branch': 'release'}
+" Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 set number relativenumber 		" line numbers
@@ -122,3 +124,15 @@ au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !ch
 
 " return to last edit position
 " au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

@@ -3,13 +3,13 @@
 WALL="$XDG_DATA_HOME"/wall
 
 restore() {
-	[ -f "$WALL" ] && hsetroot -fill $WALL && exit
+	[ -f "$WALL" ] && hsetroot -cover $WALL && exit
 	echo "No wallpaper set" >/dev/stderr
 	exit 1
 }
 
 wallset() {
-	cp $IMAGE $WALL
+	cp "$IMAGE" $WALL
 	restore
 }
 

@@ -3,7 +3,7 @@
 # Autostart file
 
 # play startup chime
-mpv --no-config "$XDG_DATA_HOME"/sounds/chicago95-startup.ogg > /dev/null 2>&1 &
+#mpv --no-config --no-terminal "$XDG_DATA_HOME"/sounds/chicago95-startup.ogg &
 
 # set wallpaper
 wallset
@@ -11,6 +11,9 @@ wallset
 # remap capslock and escape
 setxkbmap -option "caps:escape"
 setxkbmap -option "shift:both_capslock"
+
+# source Xresources
+xrdb "$XDG_CONFIG_HOME"/Xresources
 
 # enable numlock
 numlockx
@@ -40,10 +43,10 @@ cbatticon -n -i notification -l 25 -r 15 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # usb automount
-udiskie -snm nested &
+udiskie -sn &
 
 # start qbittorrent
 sleep 10 && qbittorrent &
 
-# sleep 10 && keepassxc &
-sleep 10 && secret-tool lookup keepassxc Passwords | keepassxc --pw-stdin ~/.local/Passwords.kdbx
+# redshift
+sleep 10 && redshift-gtk -l 31.6:74.3 &

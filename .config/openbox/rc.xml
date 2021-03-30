@@ -316,6 +316,11 @@
         <command>dmenu-emoji</command>
       </action>
     </keybind>
+    <keybind key="W-a">
+      <action name="Execute">
+        <command>passmenu -l 5 -p Passwords:</command>
+      </action>
+    </keybind>
     <keybind key="A-r">
       <action name="Reconfigure"/>
     </keybind>
@@ -823,8 +828,8 @@
         <y>center</y>
       </position>
       <size>
-        <width>650</width>
-        <height>500</height>
+        <width>800</width>
+        <height>600</height>
       </size>
     </application>
     <application type="normal">
@@ -840,6 +845,16 @@
       </size>
     </application>
     <application class="*.exe" type="dialog">
+      <position force="yes">
+        <x>center</x>
+        <y>center</y>
+      </position>
+    </application>
+    <application class="Uget-gtk" title="uGet - New Download">
+      <focus>yes</focus>
+      <layer>top</layer>
+    </application>
+    <application class="persepolis">
       <position force="yes">
         <x>center</x>
         <y>center</y>

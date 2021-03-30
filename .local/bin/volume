@@ -1,22 +1,24 @@
 #!/bin/sh
 
 volume() {
-	vol="$(amixer get Master | awk -F'[][]' 'END{ print $2, $6}')"
+	# vol="$(amixer get Master | awk -F'[][]' 'END{ print $2, $4}')"
+	vol="$(pulsemixer --get-volume | awk '{print $1}')"
+	mute="$(pulsemixer --get-mute)"
 
-	if [ "${vol##* }" = "on" ]; then
+	if [ "$mute" = 0 ]; then
 		#echo "VVOL: ${vol%% *}"
-		echo "V ${vol%% *}"
+		echo " $vol%"
 	else
 		#echo "VVOL: mute"
-		echo "V mute"
+		echo " mute"
 	fi
 }
 
 volume
-trap 'volume' USR1
+# trap 'volume' USR1
 
-mkfifo /tmp/volume 2> /dev/null
-while true
-do
-	read -p < /tmp/volume 1>/dev/null 2>/dev/null
-done
+# mkfifo /tmp/volume 2> /dev/null
+# while true
+# do
+# 	read -p < /tmp/volume 1>/dev/null 2>/dev/null
+# done

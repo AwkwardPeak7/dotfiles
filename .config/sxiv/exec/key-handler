@@ -12,5 +12,11 @@ do
 
 		"b")
 			wallset "$file" ;;
+		"P")
+			# print image...
+			notify-send "Printing "$(basename -- $file)""
+			lpr "$file" ;;
+		"D")
+			rm "$file" ;;
 	esac
 done
