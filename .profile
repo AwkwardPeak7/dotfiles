@@ -67,6 +67,9 @@ eval "$(dircolors)"
 # Man pager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# Pass generate length
+# export PASSWORD_STORE_GENERATED_LENGTH="32"
+
 # start X server if on tty1 and X server not already running
 # [ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg &&\
 # startx

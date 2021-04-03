@@ -41,9 +41,13 @@ PROMPT='%F{green}%n%f@%F{magenta}%m%f %F{blue}%B%~%b%f %# '
 RPROMPT='[%F{yellow}%?%f]'
 
 # plugins sourced
+# extra/pkgfile
 source /usr/share/doc/pkgfile/command-not-found.zsh
+# aur/zsh-fast-syntax-highlighting
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# community/zsh-autosuggestions
 [ "$TERM" != "linux" ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# community/grc
 source /etc/grc.zsh
 
 case $TERM in

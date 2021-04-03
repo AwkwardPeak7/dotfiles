@@ -154,7 +154,9 @@ input type:touchpad {
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    # bindsym $mod+Shift+space floating toggle
+    # bindsym $mod+Shift+space "mark --add _; [con_mark=f] floating disable, border none, mark --add --toggle _; [con_mark=_] floating enable, border pixel 1; mark --add --toggle f;"
+    bindsym $mod+Shift+Space floating toggle; [floating] border normal ; [tiling] border pixel 2
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
@@ -212,6 +214,8 @@ input type:touchpad {
     bindsym Print exec grimshot --notify save screen
     bindsym $mod+Print exec grimshot --notify save active
     bindsym $mod1+Print exec grimshot --notify save area
+
+bindsym $mod+Shift+s sticky toggle
 
 
 # Resizing containers:
@@ -335,10 +339,11 @@ for_window [title="Select OPML-File"] floating enable
 for_window [title="^Open File$"] floating enable
 for_window [window_type="dialog"] floating enable
 
-for_window [app_id="wdisplays"] floating enable
-for_window [class="Lxappearance"] floating enable
-for_window [title="File Operation Progress"] floating enable
+for_window [app_id="wdisplays"] floating enable, border normal
+for_window [class="Lxappearance"] floating enable, border normal
+for_window [title="File Operation Progress"] floating enable, border normal
 for_window [title="Firefox — Sharing Indicator"] floating enable
+for_window [title="Firefox - Choose User Profile"] floating enable, border normal
 
 
 # include default config modules
