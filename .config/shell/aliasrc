@@ -1,0 +1,25 @@
+#!/bin/sh
+alias ls='exa --color=auto --group-directories-first' ## list unhidden files using exa
+alias ll='ls -lh' ## list unhidden files in list form
+alias la='ls -a' ## list all files
+alias lla='ll -a' ## list all files in list form
+alias grep='grep -i --color=auto' ## search case-insensitively
+alias mv='mv -iv' ## verbose output + confirmation
+alias rm='rm -Iv --one-file-system' ## verbose output + confirmation
+alias sudo='sudo ' ## to make aliases work with sudo
+alias cp='cp -iv' ## verbose output + confirmation
+alias df='df -h' ## output in megabytes
+alias diff='diff --color=auto'
+alias config='/usr/bin/git --git-dir=$HOME/.local/dotfiles.git/ --work-tree=$HOME' ## command to manage my dotfiles
+alias myip='curl -w "\n" ifconfig.me'
+#alias yt='youtube-dl --add-metadata -i --write-auto-sub --sub-lang en --embed-subs --merge-output-format mp4'
+alias yt='youtube-dl' ## the flags are in the youtube-dl config
+alias ytp='yt --proxy="socks5://localhost:9050"' ## download using TOR proxy
+alias qrscan='zbarimg -q --raw'
+alias buku='buku --suggest'
+alias cat='bat -pp'
+alias ip='ip -c'
+alias ports='sudo netstat -lepunt'
+alias vi='nvim'
+alias vim='nvim'
+alias ssh='TERM=xterm ssh'

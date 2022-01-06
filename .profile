@@ -4,7 +4,7 @@
 [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
 # add local bin directory and all subdirectories to path
-PATH=$(find "$HOME/.local/bin" -type d | tr '\n' ':')$PATH:"$HOME/.local/share/npm/bin"
+PATH=$(find ~/.local/bin -type d -printf %p:)$PATH
 export PATH
 
 # default programs
@@ -32,37 +32,43 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc" # this wgetrc changes location of history file
-export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+#export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-# export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+#export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export RANDFILE="$XDG_CACHE_HOME/rnd"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export GOPATH="$XDG_DATA_HOME/go"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode"
+export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
+export SSB_HOME="$XDG_DATA_HOME/zoom" # for Zoom
+export KDEHOME="$XDG_CONFIG_HOME/kde"
 
 # Qt5 theme
-export QT_QPA_PLATFORMTHEME="qt5ct"
+#export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # disable gtk overlay scrollbars
-export GTK_OVERLAY_SCROLLING=0
+# export GTK_OVERLAY_SCROLLING=0
+
+# use kde dialog in some gtk programs
+# > messes up fonts in wayland session
+#export GTK_USE_PORTAL=1
 
 # default wine options
 export WINEARCH="win32"
 export WINEPREFIX="$HOME/.local/wine/default/"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 export WINEDEBUG=-all # this is here because it supposedly increase the speed as wine don't need to print log to stdout (which is not required when running from launcher...) so unset it when installing a program for better troubleshooting.
-
-# tcl/tk theme
-export TCLLIBPATH="$XDG_DATA_HOME/tk-themes"
-
-# xinput2 for firefox and thunderbird
-export MOZ_USE_XINPUT2=1
+#export DXVK_STATE_CACHE_PATH="$XDG_CACHE_HOME/dxvk/"
 
 # LS_COLORS
-eval "$(dircolors)"
+#eval "$(dircolors)"
+export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'
 
 # Man pager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -70,25 +76,12 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Pass generate length
 # export PASSWORD_STORE_GENERATED_LENGTH="32"
 
+## Wayland
+# firefox
+export MOZ_ENABLE_WAYLAND=1
+
 # start X server if on tty1 and X server not already running
-# [ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg &&\
-# startx
+#[ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg && exec startx
 
-# # start wayland if on tty1 and no DISPLAY env set
-if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-	# current desktop
-	export XDG_CURRENT_DESKTOP=sway
-
-	# Wayland backend for QT5+
-	export QT_QPA_PLATFORM=wayland
-	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-
-	# Wayland backend for Firefox and Thunderbird
-	export MOZ_ENABLE_WAYLAND=1
-
-	# Wayland backend for GTK3+
-	export GTK_BACKEND=wayland
-
-	# Sway window manager
-	sway
-fi
+# start plasma wayland if on tty1
+[ "$(tty)" = "/dev/tty1" ] && [ -z "$WAYLAND_DISPLAY" ] && XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland

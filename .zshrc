@@ -1,8 +1,8 @@
 ## ~/.zshrc
 
 # History
-HISTFILE="$XDG_DATA_HOME/zsh/history"
-HISTSIZE=10000
+HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/shell/history"
+HISTSIZE=1000000
 SAVEHIST="$HISTSIZE"
 
 # Shell options
@@ -33,22 +33,29 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" ## completion color same
 
 autoload -U colors && colors
 autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump" ## move .zcompdum
+mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump" ## move .zcompdump
 _comp_options+=(globdots) ## include dot files in completion
 
 # Prompt Customization
-PROMPT='%F{green}%n%f@%F{magenta}%m%f %F{blue}%B%~%b%f %# '
+PROMPT='%F{cyan}%n%f@%F{green}%m%f %F{blue}%B%~%b%f %# '
 RPROMPT='[%F{yellow}%?%f]'
 
-# plugins sourced
+# Plugins sourced
 # extra/pkgfile
 source /usr/share/doc/pkgfile/command-not-found.zsh
+
 # aur/zsh-fast-syntax-highlighting
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
 # community/zsh-autosuggestions
-[ "$TERM" != "linux" ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # community/grc
 source /etc/grc.zsh
+
+# aur/zsh-vi-mode
+#source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 case $TERM in
   xterm*)
@@ -56,5 +63,8 @@ case $TERM in
     ;;
 esac
 
-# aliases from bashrc
-eval "$(grep alias ~/.bashrc | sed 's:#.*$::g')"
+# source aliasrc for aliases
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+
+# source funtionrc for functions
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functionrc"
